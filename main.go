@@ -16,7 +16,7 @@ func (plugin *TCPShieldPlugin) Init(context api.Context) {
 	context.EventBus().HandleSessionPacket(func(eventSession api.EventSession) {
 		event, ok := eventSession.(api.EventSessionPacket)
 		if !ok {
-			fmt.Println("Failed to process HandleSessionPacket, packet is invalid type")
+			fmt.Println("Failed to process HandleSessionPacket, event is invalid type")
 			return
 		}
 
