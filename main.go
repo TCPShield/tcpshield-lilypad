@@ -29,7 +29,7 @@ func (plugin *TCPShieldPlugin) Init(context api.Context) {
 
 		session := event.Session()
 		playerIP, playerPort := session.Remote()
-		if err := Verify(packetHandshake.ServerAddress, &playerIP); err != nil {
+		if err := Verify(&packetHandshake.ServerAddress, &playerIP); err != nil {
 			playerName, uuid := session.Profile()
 			fmt.Println("Failed to verify TCPShield session for player:", playerName, uuid, "error:", err.Error())
 			session.Disconnect("Failed to verify session")
