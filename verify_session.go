@@ -16,8 +16,8 @@ import (
 
 const PublicKey = "MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEEvy/Eh9v5QMkdzeTw1tPMCEljzKgw0zWwt926zRZJT9sv/OLEwkE/rB1JrH3XXMTsv8w7gPzV4k9BjUAcZ1xH1yNG/AhNA23DQiFSXye/WFB+KlSr4hkx68niNJdvoPs"
 
-func Verify(serverAddress string, realIP *string) error {
-	parts := strings.Split(serverAddress, "///")
+func Verify(serverAddress *string, realIP *string) error {
+	parts := strings.Split(*serverAddress, "///")
 	if len(parts) != 4 {
 		return errors.New("invalid payload length")
 	}
@@ -43,6 +43,7 @@ func Verify(serverAddress string, realIP *string) error {
 		return err
 	}
 
+	*serverAddress = hostname
 	*realIP = playerIP
 
 	return nil
